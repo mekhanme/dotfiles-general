@@ -20,7 +20,7 @@ $character"""
 
 [username]
 style_user = "fg:#97e3e0"
-format = "[a$user]($style)"
+format = "[a](bold fg:#d459d1)[$user]($style)"
 # format = "[$user]($style)"
 show_always = true
 disabled = false
