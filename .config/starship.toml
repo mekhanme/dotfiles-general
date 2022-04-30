@@ -138,7 +138,7 @@ modified = "!"
 staged = '[++\($count\)](green)'
 renamed = "»"
 deleted = "✘"
-format = "([\[$all_status$ahead_behind\]](fg:#d77aa9) )"
+format = '([\[$all_status$ahead_behind\]](fg:#d77aa9) )'
 # [env_var.SSH_AGENT_ID]
 # symbol = "🤖"
 # default = ""
