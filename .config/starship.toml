@@ -20,7 +20,7 @@ $character"""
 
 [username]
 style_user = "fg:#97e3e0"
-format = "[a](bold fg:#d459d1)[$user]($style)"
+format = "[$user]($style)"
 # format = "[$user]($style)"
 show_always = true
 disabled = false
@@ -32,7 +32,7 @@ error_symbol = "[❯](bold fg:#d87b64)"
 
 [hostname]
 ssh_only = false
-format = "[$hostname](bold fg:#8ce8e2) "
+format = "[@](bold fg:#d459d1)[$hostname](bold fg:#8ce8e2) "
 disabled = false
 
 [directory]
