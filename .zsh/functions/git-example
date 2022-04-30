@@ -1,0 +1,16 @@
+#!/bin/zsh
+# https://stackoverflow.com/questions/39689789/zsh-setopt-prompt-subst-not-working
+# Show Git branch/tag, or name-rev if on detached head
+parse_git_branch() {
+  echo "PARSING GIT BRANCH"
+  (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+zle -N parse_git_branch
+bindkey "^x^0" parse_git_branch
+
+prompt () {
+    PS1="%/$(git status)"
+    echo "1111"
+}
+
+precmd_functions+=(prompt)

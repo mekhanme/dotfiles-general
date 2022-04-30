@@ -1,0 +1,50 @@
+# https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-config.html
+
+[core]
+    eol                   = lf
+    autocrlf              = false
+    safecrlf              = true
+    fileMode              = false
+    pager                 = diff-so-fancy | less --tabs=4 -RFX
+
+[include]
+    path                  = .gitconfig.local
+
+[alias]
+    nc                    = commit -a --allow-empty-message -m \"\"
+    l                     = log --pretty=colored
+    mwps                  = push -o merge_request.create -o merge_request.target=master -o merge_request.merge_when_pipeline_succeeds
+
+[pretty]
+    colored               = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
+
+[color]
+    diff                  = auto
+    status                = auto
+    branch                = auto
+    interactive           = auto
+    ui                    = true
+    pager                 = true
+
+[color "status"]
+    added                 = green
+    changed               = red bold
+    untracked             = magenta bold
+
+[color "branch"]
+    remote                = yellow
+
+[color "diff-highlight"]
+    oldHighlight          = red bold 52
+    newNormal             = green bold
+    newHighlight          = green bold 22
+    oldNormal             = red bold
+    stripLeadingSymbols   = false
+
+[color "diff"]
+    meta                  = yellow
+    frag                  = magenta bold
+    commit                = yellow bold
+    old                   = red bold
+    new                   = green bold
+    whitespace            = red reverse

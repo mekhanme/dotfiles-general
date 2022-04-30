@@ -1,0 +1,15 @@
+# https://stackoverflow.com/questions/48055589/widgets-can-only-be-called-when-zle-is-active?rq=1
+TMOUT=1
+TRAPALRM() {
+   if [[ "$WIDGET" =~ ^(complete-word|fzf-completion)$ ]]; then
+      # limit the reset-prompt functionality to the `takenote` script
+      if [[ "$LBUFFER" == "takenote "* ]]; then
+         zle reset-prompt
+      fi
+   fi
+}
+
+#compdef takenote
+local file=$( find -L "$HOME/notes/" -print 2> /dev/null | fzf-tmux +m )
+compadd $file
+return 0

@@ -1,0 +1,199 @@
+# # Don't print a new line at the start of the prompt
+# add_newline = true
+
+# # Replace the "❯" symbol in the prompt with "➜"
+# [character]
+# symbol = "❯"
+# error_symbol = "✗"
+# use_symbol_for_status = false
+# style_success = "fg:#6c6cd2"
+# style_failure = "underline fg:#9c27b0"
+
+# # Disable the package module, hiding it from the prompt completely
+# [package]
+# disabled = true
+
+# # Wait 10 milliseconds for starship to check files under the current directory.
+# # scan_timeout = 10
+
+# [battery]
+# disabled = true
+
+# [directory]
+# truncation_length = 3
+# truncate_to_repo = true
+# use_logical_path = true
+# fish_style_pwd_dir_length	= 3
+# style = "#80cbc4"
+
+# [dotnet]
+# disabled = true
+
+# [env_var]
+# symbol = "➜"
+# variable = "SSH_AGENT_ID"
+# # default = ""
+# # style	= "dimmed black"
+# style = "#80cbc4"
+
+# prompt_order = [
+#     "username",
+#     "hostname",
+#     "kubernetes",
+#     "directory",
+#     "git_branch",
+#     "git_state",
+#     "git_status",
+#     "hg_branch",
+#     "package",
+#     "dotnet",
+#     "golang",
+#     "java",
+#     "nodejs",
+#     "python",
+#     "ruby",
+#     "rust",
+#     "nix_shell",
+#     "conda",
+#     "memory_usage",
+#     "aws",
+#     "env_var",
+#     "cmd_duration",
+#     "line_break",
+#     "jobs",
+#     "battery",
+#     "time",
+#     "character",
+# ]
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+scan_timeout = 50
+
+format = """
+$username\
+$status\
+$shell\
+$directory\
+$docker_context\
+$env_var\
+$git_branch\
+$character"""
+
+[character]
+format = "$symbol$symbol "
+success_symbol = "[❯](bold fg:#6c6cd2)"
+error_symbol = "[❯](bold fg:#d87b64)"
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+use_logical_path = false
+# fish_style_pwd_dir_length	= 3
+read_only = "🔒"
+read_only_style = "red"
+repo_root_style = "#34ef6f"
+style = "#87abe6"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+# [directory.substitutions]
+# "/Volumes/network/path" = "/net"
+# "src/com/long/java/path" = "mypath"
+
+[docker_context]
+symbol = "🐋"
+format = "via [$symbol$context]($style) "
+style = "blue bold"
+
+[git_branch]
+always_show_remote = false
+only_attached = false
+truncation_length = 5
+truncation_symbol = ".."
+ignore_branches = ["master", "main"]
+symbol = " "
+style = "bold purple"
+# symbol = "🌱 "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[env_var.SSH_AGENT_ID]
+symbol = "🤖"
+default = ""
+format = "$symbol:[$env_value]($style)"
+
+# default format
+# format = """
+# $username\
+# $hostname\
+# $localip\
+# $shlvl\
+# $singularity\
+# $kubernetes\
+# $directory\
+# $vcsh\
+# $git_branch\
+# $git_commit\
+# $git_state\
+# $git_metrics\
+# $git_status\
+# $hg_branch\
+# $docker_context\
+# $package\
+# $buf\
+# $c\
+# $cmake\
+# $cobol\
+# $container\
+# $dart\
+# $deno\
+# $dotnet\
+# $elixir\
+# $elm\
+# $erlang\
+# $golang\
+# $haskell\
+# $helm\
+# $java\
+# $julia\
+# $kotlin\
+# $lua\
+# $nim\
+# $nodejs\
+# $ocaml\
+# $perl\
+# $php\
+# $pulumi\
+# $purescript\
+# $python\
+# $rlang\
+# $red\
+# $ruby\
+# $rust\
+# $scala\
+# $swift\
+# $terraform\
+# $vlang\
+# $vagrant\
+# $zig\
+# $nix_shell\
+# $conda\
+# $spack\
+# $memory_usage\
+# $aws\
+# $gcloud\
+# $openstack\
+# $azure\
+# $env_var\
+# $crystal\
+# $custom\
+# $sudo\
+# $cmd_duration\
+# $line_break\
+# $jobs\
+# $battery\
+# $time\
+# $status\
+# $shell\
+# $character"""

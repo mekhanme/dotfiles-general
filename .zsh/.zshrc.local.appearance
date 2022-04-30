@@ -1,0 +1,55 @@
+# 🙈  🙈  🙈  🙈  🙈  🙈 Appearance / Completion 🙈  🙈  🙈  🙈  🙈  🙈
+
+# # zstyle ':completion:*' menu select=long-list select=0
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+zstyle ":completion:*:descriptions" format "%B%d%b"
+zstyle ':completion:*:*:*:default' menu yes select search
+
+# Speed up autocomplete, force prefix mapping
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
+
+# list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+
+# allow one error for every three characters typed in approximate completer
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+
+# insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+# formatting and messages
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
+
+# match uppercase from lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# command for process lists, the local web server details and host completion
+#zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
+#zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
+zstyle '*' hosts $hosts
+
+# # Filename suffixes to ignore during completion (except after rm command)
+# zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro' '*?.o' '*~' '*?.orig'
+
+# # ignore completion functions (until the _ignored completer)
+# zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# # https://github.com/nnao45/zsh-kubectl-completion
+# zstyle ':completion:*:*:kubectl:*' list-grouped false
+
+zstyle ':completion:*' rehash true
+
