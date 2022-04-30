@@ -77,8 +77,8 @@ $status\
 $shell\
 $directory\
 $docker_context\
-$env_var\
 $git_branch\
+$git_commit\
 $character"""
 
 [character]
@@ -104,8 +104,8 @@ format = "[$path]($style)[$read_only]($read_only_style) "
 
 [docker_context]
 symbol = "🐋"
-format = "via [$symbol$context]($style) "
 style = "blue bold"
+format = "[$symbol$context]($style) "
 
 [git_branch]
 always_show_remote = false
@@ -114,14 +114,35 @@ truncation_length = 5
 truncation_symbol = ".."
 ignore_branches = ["master", "main"]
 symbol = " "
-style = "bold purple"
 # symbol = "🌱 "
-format = "[$symbol$branch(:$remote_branch)]($style) "
+format = "[$symbol](fg:#87abe6)[$branch(:$remote_branch)](bold purple) "
 
-[env_var.SSH_AGENT_ID]
-symbol = "🤖"
-default = ""
-format = "$symbol:[$env_value]($style)"
+[git_metrics]
+format = '[+$added](fg:#346591)/[-$deleted](fg:#d77aac) '
+disabled = false
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = "🔖 "
+format = "[\\($hash$tag\\)](fg:#6cb3aa) "
+
+[git_status]
+conflicted = "🏳"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+up_to_date = "✓"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = '[++\($count\)](green)'
+renamed = "»"
+deleted = "✘"
+format = "([\[$all_status$ahead_behind\]](fg:#d77aa9) )"
+# [env_var.SSH_AGENT_ID]
+# symbol = "🤖"
+# default = ""
+# format = "$symbol:[$env_value]($style)"
 
 # default format
 # format = """
