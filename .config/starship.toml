@@ -73,6 +73,7 @@ scan_timeout = 50
 
 format = """
 $username\
+$hostname\
 $status\
 $shell\
 $directory\
@@ -87,6 +88,12 @@ $character"""
 format = "$symbol$symbol "
 success_symbol = "[❯](bold fg:#6c6cd2)"
 error_symbol = "[❯](bold fg:#d87b64)"
+
+[hostname]
+ssh_only = false
+format = "[$hostname](bold dimmed fg:#6ac6c1) "
+trim_at = ".companyname.com"
+disabled = false
 
 [directory]
 truncation_length = 3
@@ -104,10 +111,29 @@ format = "[$path]($style)[$read_only]($read_only_style) "
 # "/Volumes/network/path" = "/net"
 # "src/com/long/java/path" = "mypath"
 
+[jobs]
+symbol = "✦ "
+symbol_threshold = 1
+number_threshold = 2
+format = "[$symbol$number](bold fg:#5564e8) "
+
 [docker_context]
 symbol = "🐋"
 style = "blue bold"
 format = "[$symbol$context]($style) "
+
+[kubernetes]
+symbol = "☸"
+format = '[$symbol ($user | )$context \($namespace\)](dimmed fg:#5990a1) '
+disabled = false
+[kubernetes.context_aliases]
+".*.local.cluster.k8s" = "dev"
+# "gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+
+[helm]
+version_format = "v${raw}"
+symbol = "⛵ "
+format = "[$symbol](bold fg:#b5c1c4) "
 
 [git_branch]
 always_show_remote = false
@@ -123,11 +149,6 @@ format = "[$symbol](fg:#87abe6)[$branch(:$remote_branch)](bold purple) "
 format = '[+$added](fg:#346591)/[-$deleted](fg:#d77aac) '
 disabled = false
 
-[git_commit]
-commit_hash_length = 4
-tag_symbol = "🔖 "
-format = "[\\($hash$tag\\)](fg:#6cb3aa) "
-
 [git_status]
 conflicted = "🏳"
 ahead = "⇡"
@@ -138,10 +159,11 @@ untracked = "?"
 stashed = "$"
 modified = "!"
 staged = "+"
-# staged = '[++\($count\)](green)'
 renamed = "»"
 deleted = "✘"
 format = '([\[$all_status$ahead_behind\]](fg:#d77aa9) )'
+disabled = true
+
 # [env_var.SSH_AGENT_ID]
 # symbol = "🤖"
 # default = ""
