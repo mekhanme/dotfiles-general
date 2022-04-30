@@ -77,11 +77,13 @@ $hostname\
 $status\
 $shell\
 $directory\
+$kubernetes\
 $docker_context\
 $git_branch\
 $git_commit\
 $git_metrics\
 $git_status\
+$jobs\
 $character"""
 
 [character]
@@ -91,7 +93,7 @@ error_symbol = "[❯](bold fg:#d87b64)"
 
 [hostname]
 ssh_only = false
-format = "[$hostname](bold dimmed fg:#6ac6c1) "
+format = "[$hostname](bold dimmed fg:#d292e3) "
 trim_at = ".companyname.com"
 disabled = false
 
