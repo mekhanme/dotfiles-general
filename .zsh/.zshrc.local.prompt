@@ -1,0 +1,33 @@
+# 🍧  🍧  🍧  🍧  🍧  🍧  🍧  🍧  Prompt  🍧  🍧  🍧  🍧  🍧  🍧  🍧  🍧
+
+export color1="#6c6cd2"
+export color2="#80cbc4"
+export color3="#d87b64"
+export color4="#dddf81"
+export color5="#34ef6f"
+export color6="#3b9188"
+export color7="#ad4bc2"
+export color8="#87abe6"
+
+export SLIMLINE_ALWAYS_SHOW_USER_HOST_INFO=1
+# export SLIMLINE_USER_HOST_INFO_DEFAULT_USER=mikh
+export SLIMLINE_USER_HOST_INFO_FORMAT="%F{$color8}|user|%F{$color7}@%F{$color5}|host|%f"
+export SLIMLINE_USER_HOST_INFO_ROOT_FORMAT="%F{$color1}@%F{$color5}|host|%f"
+export SLIMLINE_SYMBOL_WORKING_FORMAT="%F{004}❯%f%F{004}❯%f"
+export SLIMLINE_SYMBOL_READY_FORMAT="%F{004}❯%f%F{005}❯%f"
+# |default| (user_host_info cwd symbol)
+export SLIMLINE_LEFT_PROMPT_SECTIONS="|default|"
+# export SLIMLINE_LEFT_PROMPT_FORMAT
+# export SLIMLINE_LEFT_PROMPT_FORMAT="|sections| "
+# |default| (execution_time exit_status git aws_profile virtualenv nodejs vi_mode)
+export SLIMLINE_RIGHT_PROMPT_SECTIONS="execution_time exit_status git aws_profile virtualenv"
+# export SLIMLINE_RIGHT_PROMPT_FORMAT
+export SLIMLINE_CWD_FORMAT="%F{$color1}|path|%f"
+export SLIMLINE_CWD_ROOT_FORMAT="%F{$color2}|path|%f"
+export SLIMLINE_EXECUTION_TIME_FORMAT="%F{181}|time|%f"
+export SLIMLINE_EXIT_STATUS_FORMAT="%F{203}|exit_status|%f %F{197}↵%f"
+export SLIMLINE_ENABLE_ASYNC_AUTOLOAD=1
+export SLIMLINE_MAX_EXEC_TIME=3
+export GITLINE_REPO_INDICATOR="📍"
+
+zinit light-mode compile"{*.zsh,lib/*.zsh,sections/*.zsh,zsh-async/*.zsh}" for mengelbrecht/slimline

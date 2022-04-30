@@ -1,0 +1,4 @@
+#!/bin/zsh
+sshh () {
+    tmux -u neww -n ${host} "ssh -Xt ${host} $*"
+}

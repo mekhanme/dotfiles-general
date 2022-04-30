@@ -1,0 +1,4 @@
+# export FZFZ_RECENT_DIRS_TOOL="fasd"
+# export FZFZ_SUBDIR_LIMIT=0
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,0 +1,134 @@
+zinit ice wait"1" lucid from"github-rel" as"program" mv"fd* -> fd" pick"fd/fd"
+zinit light sharkdp/fd
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" mv"bat* -> bat" pick"bat/bat"
+zinit light sharkdp/bat
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" mv"exa* -> exa"
+zinit light ogham/exa
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" mv"micro* -> micro"  \
+  pick"micro/micro" bpick"*linux64.tar.gz" ver"v2.0.2" atpull'%atclone' atclone"micro -plugin install fish manipulator filemanager wc"
+zinit light zyedidia/micro
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" cp"tldr -> /usr/local/bin/tldr"
+zinit light isacikgoz/tldr
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" bpick"*linux64*" mv"jq* -> jq"
+zinit light stedolan/jq
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" mv"yq* -> yq"
+zinit light mikefarah/yq
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
+zinit light BurntSushi/ripgrep
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" bpick"*x86_64-unknown-linux-gnu*" mv"dust* -> dust" pick"dust/dust"
+zinit light bootandy/dust
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" bpick"*linux_amd64.tgz*" pick"gotop"
+zinit light cjbassi/gotop
+
+
+
+zinit ice wait"3" lucid
+zinit light zlsun/solarized-man
+
+
+
+zinit ice wait"3" lucid has"grc"
+zinit light unixorn/warhol.plugin.zsh
+
+
+
+
+
+zinit ice wait"2" lucid atinit"zicompinit; zicdreplay" depth"1"
+zinit light zdharma/fast-syntax-highlighting
+
+
+
+zinit ice wait"1" lucid blockf atload'zicompinit; zicdreplay'
+zinit light zsh-users/zsh-completions
+
+
+
+zinit ice wait"2" lucid depth"1" as"program" pick"bin/fzf-tmux" \
+  multisrc"shell/completion.zsh shell/key-bindings.zsh" notify
+zinit load junegunn/fzf
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program" bpick"*x86_64-lnx*"
+zinit light dalance/procs
+
+
+
+zinit ice wait"1" lucid
+zinit light zsh-users/zsh-history-substring-search
+
+
+
+zinit ice wait"1" lucid atclone"mkdir build ; cd build ; cmake .." make"-C build" as"program" pick"build/bin/dfc"
+zinit light Rolinh/dfc
+
+
+
+zinit ice wait"1" lucid from"github-rel" as"program"
+zinit light homeport/dyff
+
+
+
+zinit ice wait"2" lucid nocompletions has"fzf"
+zinit light b4b4r07/enhancd
+
+
+
+zinit ice wait"2" lucid has"fzf"
+zinit light urbainvaes/fzf-marks
+export FZF_MARKS_FILE="${HOME}/.marks" FZF_MARKS_COMMAND="fzf --reverse" FZF_MARKS_JUMP="^[k"
+
+
+
+zinit ice wait"3" lucid has"fzf"
+zinit light wfxr/forgit
+export FORGIT_FZF_DEFAULT_OPTS="--reverse --border"
+#  --exact --cycle --height '50%'
+
+
+
+zinit ice wait"2" lucid
+zinit light wookayin/fzf-fasd
+
+
+
+zinit ice wait"2" lucid
+zinit light ytet5uy4/fzf-widgets
+
+
+
+zinit ice wait"2" lucid nocompletions has"fzf" atload"bindkey -r '^P'; bindkey '^P' fuzzy-search-and-edit"
+zinit load seletskiy/zsh-fuzzy-search-and-edit
+
+
+
+zinit ice wait"2" lucid nocompletions has"fzf" atload"bindkey -r '^P'; bindkey '^P' fuzzy-search-and-edit"
+zinit load seletskiy/zsh-fuzzy-search-and-edit
