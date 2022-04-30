@@ -63,11 +63,12 @@ format = "[$symbol$number](bold fg:#5564e8) "
 symbol = "🐋"
 style = "blue bold"
 format = "[$symbol$context]($style) "
+disabled = false
 
 [kubernetes]
 symbol = "☸"
 format = '[$symbol $context(|$namespace)](fg:#dcc1ad) '
-disabled = true
+disabled = false
 [kubernetes.context_aliases]
 ".*.local.cluster.k8s" = "dev"
 # "gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
@@ -86,11 +87,11 @@ ignore_branches = ["master", "main"]
 symbol = " "
 # symbol = "🌱 "
 format = "[$symbol](fg:#87abe6)[$branch(:$remote_branch)](bold purple) "
-disabled = true
+disabled = false
 
 [git_metrics]
 format = '[+$added](fg:#346591)/[-$deleted](fg:#d77aac) '
-disabled = true
+disabled = false
 
 [git_status]
 conflicted = "🏳"
@@ -105,7 +106,7 @@ staged = "+"
 renamed = "»"
 deleted = "✘"
 format = '([\[$all_status$ahead_behind\]](fg:#d77aa9) )'
-disabled = true
+disabled = false
 
 # [env_var.SSH_AGENT_ID]
 # symbol = "🤖"
