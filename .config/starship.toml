@@ -87,14 +87,13 @@ $jobs\
 $character"""
 
 [character]
-format = "$symbol$symbol "
-success_symbol = "[❯](bold fg:#6c6cd2)"
-error_symbol = "[❯](bold fg:#d87b64)"
+format = "$symbol(bold fg:#6c6cd2)$symbol(bold fg:#d87b64) "
+success_symbol = "[❯]"
+error_symbol = "[❯]"
 
 [hostname]
 ssh_only = false
-format = "[$hostname](bold dimmed fg:#d292e3) "
-trim_at = ".companyname.com"
+format = "[$hostname](bold fg:#8ce8e2) "
 disabled = false
 
 [directory]
@@ -114,7 +113,7 @@ format = "[$path]($style)[$read_only]($read_only_style) "
 # "src/com/long/java/path" = "mypath"
 
 [jobs]
-symbol = "✦ "
+symbol = "✦"
 symbol_threshold = 1
 number_threshold = 2
 format = "[$symbol$number](bold fg:#5564e8) "
@@ -126,7 +125,7 @@ format = "[$symbol$context]($style) "
 
 [kubernetes]
 symbol = "☸"
-format = '[$symbol $context(|$namespace)](dimmed fg:#8a5eeb) '
+format = '[$symbol $context(|$namespace)](dimmed fg:#dcc1ad) '
 disabled = false
 [kubernetes.context_aliases]
 ".*.local.cluster.k8s" = "dev"
