@@ -87,9 +87,9 @@ $jobs\
 $character"""
 
 [character]
-format = "$symbol(bold fg:#6c6cd2)$symbol(bold fg:#d87b64) "
-success_symbol = "[❯]"
-error_symbol = "[❯]"
+format = "$symbol$symbol "
+success_symbol = "[❯](bold fg:#6c6cd2)"
+error_symbol = "[❯](bold fg:#d87b64)"
 
 [hostname]
 ssh_only = false
