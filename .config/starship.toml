@@ -126,7 +126,7 @@ format = "[$symbol$context]($style) "
 
 [kubernetes]
 symbol = "☸"
-format = '[$symbol ($user | )$context \($namespace\)](dimmed fg:#5990a1) '
+format = '[$symbol $context(|$namespace)](dimmed fg:#8a5eeb) '
 disabled = false
 [kubernetes.context_aliases]
 ".*.local.cluster.k8s" = "dev"
@@ -146,10 +146,11 @@ ignore_branches = ["master", "main"]
 symbol = " "
 # symbol = "🌱 "
 format = "[$symbol](fg:#87abe6)[$branch(:$remote_branch)](bold purple) "
+disabled = true
 
 [git_metrics]
 format = '[+$added](fg:#346591)/[-$deleted](fg:#d77aac) '
-disabled = false
+disabled = true
 
 [git_status]
 conflicted = "🏳"
