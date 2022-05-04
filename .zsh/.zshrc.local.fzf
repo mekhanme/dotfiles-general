@@ -1,4 +1,49 @@
 # export FZFZ_RECENT_DIRS_TOOL="fasd"
 # export FZFZ_SUBDIR_LIMIT=0
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules"
+export FZF_DEFAULT_OPTS='
+  --header "-> [Ctrl+r] toggle sort <-> [Ctrl+u] wrap lines"
+  --prompt "🍧 " --no-height --tiebreak index
+  --no-mouse --reverse --multi --layout=default
+  --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
+  --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+  --bind "ctrl-n:preview-page-down,ctrl-p:preview-page-up"
+  --bind "ctrl-space:toggle-preview,ctrl-u:toggle-preview-wrap,ctrl-r:toggle-sort"
+  --preview "[[ $(file --mime {}) =~ binary ]] &&
+                 echo {} is a binary file ||
+                 (bat --style=numbers --color=always {} ||
+                  cat {}) 2> /dev/null | head -500"
+'
+
+export FZF_CTRL_T_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules  . '/root'"
+
+export FZF_CTRL_T_OPTS='
+  --header "-> [Ctrl+r] toggle sort <-> [Ctrl+u] wrap lines <-> [Alt+m] edit in micro"
+  --bind "alt-m:execute(micro {})"
+  --bind "alt-l:execute(less -f {})"
+'
+#  --bind "alt-p:execute(cd $(dirname {}))
+
+export FZF_ALT_C_COMMAND="fd --type d --type l --no-ignore --hidden --follow --exclude .git --exclude node_modules . '/'"
+
+export FZF_ALT_C_OPTS='
+  --header "-> [Ctrl+r] toggle sort"
+  --prompt "📂 "
+  --select-1 --exit-0
+  --preview "tree -C {} | head -200"
+'
+
+export FZF_CTRL_R_OPTS='
+  --header ""
+  --prompt "👀 "
+  --preview-window down:10:hidden:wrap
+  --preview "echo {}"
+'
+# --preview-window=down:hidden
+
+# export FZF_COMPLETION_OPTS='+c -x'
+export FZF_COMPLETION_OPTS=$FZF_DEFAULT_OPTS
+export FZF_COMPLETION_TRIGGER='#'
