@@ -39,16 +39,16 @@ export FZF_DEFAULT_OPTS='
                   cat {}) 2> /dev/null | head -500"
 '
 
-export FZF_CTRL_T_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules  . '/root'"
+export FZF_CTRL_T_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules"
 
 export FZF_CTRL_T_OPTS='
   --header "-> [Ctrl+r] toggle sort <-> [Ctrl+u] wrap lines <-> [Alt+m] edit in micro"
-  --bind "alt-m:execute(micro {})"
+  --bind "alt-m:execute(nano {})"
   --bind "alt-l:execute(less -f {})"
 '
 #  --bind "alt-p:execute(cd $(dirname {}))
 
-export FZF_ALT_C_COMMAND="fd --type d --type l --no-ignore --hidden --follow --exclude .git --exclude node_modules . '/'"
+export FZF_ALT_C_COMMAND="fd --type d --type l --no-ignore --hidden --follow --exclude .git --exclude node_modules"
 
 export FZF_ALT_C_OPTS='
   --header "-> [Ctrl+r] toggle sort"
