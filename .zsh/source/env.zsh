@@ -2,7 +2,6 @@ export PAGER="less"
 export MANPAGER="most"
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export GO111MODULE="on"
 # Editor
 if (( ${+commands[micro]} )); then
   export EDITOR='micro'
@@ -19,24 +18,21 @@ export LESS="-g -i -M -R -S -w -z-4"
 
 export GREP_COLORS='ms=1;35;107'
 
-export TERM="xterm-256color"
-export LANG="en_US.utf8"
-export LC_CTYPE="en_US.utf8"
-export TZ="Europe/Moscow"
+# export TERM="xterm-256color"
+# export LANG="en_US.utf8"
+# export LC_CTYPE="en_US.utf8"
+# export TZ="Europe/Moscow"
 
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-export HISTSIZE="6000"
-export SAVEHIST="${HISTSIZE}"
-export HISTFILE="${HOME}/.zhistory"
+# export HISTSIZE="6000"
+# export SAVEHIST="${HISTSIZE}"
+# export HISTFILE="${HOME}/.zhistory"
 # export HISTDUP=erase
 
 export GIT_DISCOVERY_ACROSS_FILESYSTEM="1"
 
 export HTTPIE_CONFIG_DIR="${HOME}/.config/httpie"
-
-export ANSIBLE_CONFIG="${HOME}/.ansible/.ansible.cfg"
-# ${HOME}/anaconda3/bin:
 
 # https://til.hashrocket.com/posts/7evpdebn7g-remove-duplicates-in-zsh-path
 typeset -aU path
@@ -44,23 +40,6 @@ typeset -aU path
 # https://github.com/asdf-vm/asdf-nodejs
 export NODEJS_CHECK_SIGNATURES=no
 export ASDF_SKIP_RESHIM=0
-
-export TENOR_API_KEY="Y7GJ2170KBY9"
-export GITHUB_TOKEN="0c32c3199ec6e811b7284c61b6fd54d4532af3fe"
-export VULTR_API_KEY="7JC3QKT4D3AOUWUFYHLHTSIXHRHWXO6TFEXA"
-export STRAVA_ACCESS_TOKEN="53cd301055d393451f489f10b41527df165872f4"
-export STRAVA_REFRESH_TOKEN="778655219781f614789beb1bb87b46ce27f84422"
-export STRAVA_CLIENT_SECRET="13f95d23c53862b3f53bbd5f4cf6a8b1dea116b4"
-export STRAVA_CLIENT_ID="30937"
-export STRAVA_ATHLETE_ID="4741723"
-export STRAVA_APP_EXCHANGE_TOKEN="705e797f1bba454ad4a47a465bac78b403a085fb"
-export STRAVA_APP_ACCESS_TOKEN="27db7454a46f64aefedd24c3831c24e0ff9afb2f"
-export STRAVA_APP_REFRESH_TOKEN="5766c995cbd9ed23e466906f6878a958bd21bff2"
-export KOMOOT_USER_ID="916883929714"
-export GOOGLE_DRIVE_API_KEY="AIzaSyDzeWI-TB8oxhWD0P_RkR2ypXh9U1oh6PY"
-export WEATHERSTACK_API_KEY="5bed3d13228a5b5bef43cae54e5a6fee"
-export OPENWEATHERMAP_API_KEY="2f4b76ee52d30f31287abed322f7affb"
-export LMS_DEVICE_RADIO="00:04:20:27:f6:f6"
 
 export FD_OPTIONS='--no-ignore --hidden --follow --exclude .git --exclude node_modules --color=always'
 
