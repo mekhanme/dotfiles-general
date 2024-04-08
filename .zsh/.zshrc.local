@@ -21,8 +21,6 @@ function {
 source ${ZDOTDIR}/.zshrc.local.ssh
 source ${ZDOTDIR}/.zshrc.local.prompt
 source ${ZDOTDIR}/.zshrc.local.appearance
-source ${ZDOTDIR}/.zshrc.local.options
-source ${ZDOTDIR}/.zshrc.local.other
 source ${ZDOTDIR}/.zshrc.local.tools
 
 [[ $commands[kubectl] ]] && alias k="kubectl" && source <(kubectl completion zsh)
