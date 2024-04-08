@@ -1,0 +1,8 @@
+zstyle ':completion:*' menu select=long-list select=0
+
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+
+zstyle -e ':completion:*:approximate:*' max-errors \
+'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+
+zstyle ':completion:*' insert-tab false

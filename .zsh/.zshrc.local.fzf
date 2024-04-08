@@ -1,4 +1,129 @@
-# export FZFZ_RECENT_DIRS_TOOL="fasd"
-# export FZFZ_SUBDIR_LIMIT=0
+# export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden"
+export FZF_DEFAULT_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules"
+export FZF_DEFAULT_OPTS='
+  --prompt="🍧 ❯❯ " --no-height --tiebreak="index"
+  --no-mouse --reverse --multi --layout="default"
+  --color="fg:#dddddd,bg:#230931,hl:#61afef,fg+:#dddddd,bg+:#5C4576,hl+:#61afef,preview-bg:#28184a,preview-fg:#d858fe,query:#61afef,info:#c678dd,prompt:#61afef,pointer:#61afef,marker:#e5c07b,spinner:#61afef,header:#61afef,border:#c678dd"
+  --bind="ctrl-s:toggle-sort,ctrl-r:toggle-all"
+  --bind="ctrl-n:preview-page-down,ctrl-p:preview-page-up"
+  --bind="alt-n:preview-down,alt-p:preview-up"
+  --bind="?:toggle-preview,alt-w:toggle-preview-wrap"
+  --bind="alt-y:execute-silent(echo {} | tmux load-buffer -b fzf -)"'
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_CTRL_T_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules  ."
+
+  # --header "-> [Ctrl+r] toggle sort <-> [Ctrl+u] wrap lines <-> [Alt+m] edit in micro"
+  # --no-mouse --reverse --multi --layout=default
+export FZF_CTRL_T_OPTS='
+  --header="-> [?] toggle preview <-> [Alt-w] preview wrap lines"
+  --prompt="🌚 ❯❯ " --no-height --tiebreak="index"
+  --layout="default" --border="none"
+  --bind="alt-m:execute(micro {})"
+  --bind="alt-l:execute(less -f {})"
+  --preview-window="right:60%"
+  --preview="[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file ||
+      (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
+
+export FZF_ALT_C_COMMAND="fd --type d --type l --no-ignore --hidden --follow --exclude .git --exclude node_modules ."
+
+export FZF_ALT_C_OPTS='
+  --header="-> [?] toggle preview <-> [Alt-w] preview wrap lines <-> [Ctrl+s] toggle sort"
+  --prompt="📂 ❯❯ " --layout="default" --border="vertical" --select-1 --exit-0
+  --preview-window="right:50%"
+  --preview="dust -d 1 {} || tree -C {} | head -200"'
+
+export FZF_CTRL_R_OPTS='
+  --header=""
+  --prompt="👀 ❯❯ " --layout="default" --border="rounded"'
+# --preview-window=down:hidden
+
+# export FZF_COMPLETION_OPTS='+c -x'
+export FZF_COMPLETION_OPTS=$FZF_DEFAULT_OPTS
+export FZF_COMPLETION_TRIGGER='#'
+export FZFZ_RECENT_DIRS_TOOL="fasd"
+export FZFZ_SUBDIR_LIMIT=0
+
+
+# https://github.com/ytet5uy4/fzf-widgets
+zi ice wait"2" lucid
+zi light ytet5uy4/fzf-widgets
+
+# Enable Exact-match by fzf-insert-history
+# FZF_WIDGET_OPTS[insert-history]='--exact'
+
+bindkey '^@'  fzf-select-widget
+bindkey '^@.' fzf-edit-dotfiles
+bindkey '^@c' fzf-change-directory
+bindkey '^@n' fzf-change-named-directory
+bindkey '^@f' fzf-edit-files
+bindkey '^@k' fzf-kill-processes
+bindkey '^[s' fzf-exec-ssh
+bindkey '^\'  fzf-change-recent-directory
+bindkey '^r'  fzf-insert-history
+bindkey '^xf' fzf-insert-files
+bindkey '^xd' fzf-insert-directory
+bindkey '^xn' fzf-insert-named-directory
+
+bindkey '^@g'  fzf-select-git-widget
+bindkey '^@ga' fzf-git-add-files
+bindkey '^@gc' fzf-git-change-repository
+
+bindkey '^@d'  fzf-select-docker-widget
+bindkey '^@dc' fzf-docker-remove-containers
+bindkey '^@di' fzf-docker-remove-images
+bindkey '^@dv' fzf-docker-remove-volumes
+
+# https://github.com/junegunn/fzf
+zi ice wait"2" lucid depth"1" as"program" pick"bin/fzf-tmux" \
+  multisrc"shell/completion.zsh shell/key-bindings.zsh" notify
+zi load junegunn/fzf
+
+# https://github.com/b4b4r07/enhancd
+# zi ice wait"2" lucid nocompletions has"fzf"
+# zi light b4b4r07/enhancd
+
+# export ENHANCD_FILTER="fzf"
+# export ENHANCD_DISABLE_DOT=0
+# export ENHANCD_DISABLE_HOME=0
+# export ENHANCD_DOT_ARG="."
+
+# https://github.com/urbainvaes/fzf-marks
+zi ice wait"2" lucid has"fzf"
+zi light urbainvaes/fzf-marks
+
+export FZF_MARKS_FILE="${HOME}/.marks"
+export FZF_MARKS_COMMAND="fzf --reverse"
+export FZF_MARKS_JUMP="^[k"
+
+# https://github.com/wfxr/forgit
+zi ice wait"3" lucid has"fzf"
+zi light wfxr/forgit
+
+export FORGIT_FZF_DEFAULT_OPTS="--reverse --border  --header ''"
+
+# https://github.com/wookayin/fzf-fasd
+zi ice wait"2" lucid
+zi light wookayin/fzf-fasd
+
+# https://github.com/andrewferrier/fzf-z
+zi ice wait"2" lucid as"program" pick"fzfz" src"fzf-z.plugin.zsh"
+zi light andrewferrier/fzf-z
+
+# https://github.com/seletskiy/zsh-fuzzy-search-and-edit
+zi ice wait"2" lucid nocompletions has"fzf" atload"bindkey -r '^P'; bindkey '^P' fuzzy-search-and-edit"
+zi load seletskiy/zsh-fuzzy-search-and-edit
+
+for f (${ZDOTDIR:-$HOME}/fzf/*.zsh(N.)) source $f
+
+FZF_WIDGET_TMUX=1
+
+export TMUX_FZF_OPTIONS="-p -w 80% -h 90% -m"
+
+fzfDown() { fzf --height 50% --min-height 20 --bind ctrl-/:toggle-preview "$@" --reverse }
+
+function tmuxSessionSwitch() {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | fzfDown)
+  tmux switch-client -t "$session"
+}
+alias af='tmuxSessionSwitch'

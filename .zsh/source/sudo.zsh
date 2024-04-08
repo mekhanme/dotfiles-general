@@ -1,17 +1,3 @@
-# ------------------------------------------------------------------------------
-# Description
-# -----------
-#
-# sudo will be inserted before the command
-#
-# ------------------------------------------------------------------------------
-# Authors
-# -------
-#
-# * Dongweiming <ciici123@gmail.com>
-#
-# ------------------------------------------------------------------------------
-
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
@@ -21,5 +7,5 @@ sudo-command-line() {
     fi
 }
 zle -N sudo-command-line
-# Defined shortcut keys: [Esc] [Esc]
+# [Esc] [Esc]
 bindkey "\e\e" sudo-command-line

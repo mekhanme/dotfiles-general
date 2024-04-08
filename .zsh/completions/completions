@@ -2,16 +2,3 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 zstyle ':completion*:cd:*' tag-order local-directories directory-stack path-directories
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-echo test
-
-zstyle ':completion:*' menu select=long-list select=0
-
-# list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-
-# allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \
-'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-
-zstyle ':completion:*' insert-tab false         # Автокомплит для первого символа

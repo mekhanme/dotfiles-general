@@ -1,5 +1,3 @@
-# 🐞 🐞 🐞 🐞 🐞 🐞 🐞 🐞  aliases  🐞 🐞 🐞 🐞 🐞 🐞 🐞 🐞
-
 alias digs="dig +noall +answer"
 
 alias grep="grep --color=auto"
@@ -27,36 +25,13 @@ alias gds="git diff --staged"
 alias gc-="git checkout -"
 alias glg="git log --stat --show-signature"
 
-alias ys="yadm status -s"
-alias ya="yadm add"
-alias yd="yadm diff"
-alias yds="yadm diff --staged"
-alias ync="yadm nc"
-alias ycs="yadm nc && yps"
-alias yl="yadm list"
-alias yps="yadm push ${YADM_REMOTE} ${YADM_MASTER_BRANCH}"
-alias ypl="yadm pull ${YADM_REMOTE} ${YADM_MASTER_BRANCH}"
-alias yst="yadm stash save --keep-index"
-alias yalt="yadm alt"
-# yadm fetch --all && yadm reset --hard github/master && yadm alt
-
-export YADM_REMOTE="origin"
-export YADM_MASTER_BRANCH="master"
-export YADM_DEV_BRANCH="dev"
-alias yrev="yadm fetch --all && yadm reset --hard ${YADM_REMOTE}/${YADM_MASTER_BRANCH} && yadm alt"
-
 alias t="new-session -t d"
 alias tmuxre="tmux new-session -t 0 || tmux new-session -s 0"
-
-#alias python=python3
-#alias pip=pip3
-#alias vim=nvim
 
 alias r="source ~/.zshrc"
 alias rsync="rsync -azP -v -e ssh"
 alias fd="fd -H"
 
-#https://github.com/sharkdp/bat#customization
 alias bat='bat --style="numbers,changes,header" --theme=TwoDark --color=always --map-syntax local:bash --map-syntax kubeconfig:yaml'
 # --pager="less -FR"
 alias jq="jq -C"
@@ -68,10 +43,6 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias dev="cd /root/dev/"
 alias cloudcopy="python /usr/local/bin/cloudclip.py -c"
 alias cloudpaste="python /usr/local/bin/cloudclip.py -p"
-
-# https://stackoverflow.com/questions/21378569/how-to-auto-update-ssh-agent-environment-variables-when-attaching-to-existing-tm
-# alias fixssh="eval $(tmux showenv -s SSH_AUTH_SOCK)"
-#alias ssh="[ -n "$TMUX" ] && eval $(tmux showenv -s SSH_AUTH_SOCK); /usr/bin/ssh"
 
 alias -g L="less"
 alias -g G="grep"
@@ -105,8 +76,6 @@ alias du='du -kh'
 alias -s {avi,mpeg,mpg,mov,m2v}=mplayer
 alias -s {j2,conf,cfg,yaml.yml,json}=micro
 
-
-# https://gitlab.com/robobenklein/configs/blob/master/zsh/zshrc
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -121,9 +90,3 @@ alias 7='builtin cd -7'
 alias 8='builtin cd -8'
 alias 9='builtin cd -9'
 alias md='mkdir -p'
-
-alias lzd='lazydocker'
-
-# https://github.com/asdf-vm/asdf-nodejs/issues/100
-# npm install -g --unsafe-perm=true --allow-root --scripts-prepend-node-path
-alias npm="npm --unsafe-perm=true"

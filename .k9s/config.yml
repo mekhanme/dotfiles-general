@@ -9,17 +9,17 @@ k9s:
     sinceSeconds: -1
     fullScreenLogs: false
     textWrap: false
-    showTime: false
-  currentContext: kubernetes-admin@ks.rwxrwxrwx.dev
-  currentCluster: ks.rwxrwxrwx.dev
+    showTime: true
+  currentContext: local
+  currentCluster: local
   clusters:
-    ks.rwxrwxrwx.dev:
+    local:
       namespace:
         active: default
         favorites:
         - default
       view:
-        active: svc
+        active: pod
       featureGates:
         nodeShell: false
   thresholds:

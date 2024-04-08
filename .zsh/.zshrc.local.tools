@@ -1,134 +1,229 @@
-zinit ice wait"1" lucid from"github-rel" as"program" mv"fd* -> fd" pick"fd/fd"
-zinit light sharkdp/fd
 
+# https://github.com/mkokho/kubemrr
+
+# https://github.com/nnao45/zsh-kubectl-completion
+# TODO: не работает
+# zinit ice as"completion" wait"2" lucid blockf atload'zicompinit; zicdreplay'
+# zinit ice as"completion" wait"2" lucid atload'autoload compinit; compinit -C'
+# zinit light nnao45/zsh-kub
 
+# # https://github.com/wercker/stern
+# zinit ice wait"1" lucid from"github-rel" as"program" mv"stern* -> stern"
+# zinit light wercker/stern
 
-zinit ice wait"1" lucid from"github-rel" as"program" mv"bat* -> bat" pick"bat/bat"
-zinit light sharkdp/bat
+# # https://github.com/ahmetb/kubectx
+# # TODO: сделать дополнения multisrc"completion/kube*.zsh"
+# #  atpull'zinit creinstall -q .'
+# zinit ice wait"1" lucid as"program" pick"kube*"  has"kubectl"
+# zinit light ahmetb/kubectx
 
+# # https://github.com/derailed/k9s
+# zinit ice wait"1" lucid from"github-rel" as"program"
+# zinit light derailed/k9s
 
+# # https://github.com/jonmosco/kube-ps1
+# zinit light jonmosco/kube-ps1
+# PROMPT='$(kube_ps1)'$PROMPT
 
-zinit ice wait"1" lucid from"github-rel" as"program" mv"exa* -> exa"
-zinit light ogham/exa
 
+# https://github.com/jqlang/jq
+zi ice wait"1" lucid from"github-rel" as"program" bpick"*linux64*" mv"jq* -> jq"
+zi light jqlang/jq
 
+# https://github.com/mikefarah/yq
+zi ice wait"1" lucid from"github-rel" as"program" mv"yq* -> yq"
+zi light mikefarah/yq
 
-zinit ice wait"1" lucid from"github-rel" as"program" mv"micro* -> micro"  \
-  pick"micro/micro" bpick"*linux64.tar.gz" ver"v2.0.2" atpull'%atclone' atclone"micro -plugin install fish manipulator filemanager wc"
-zinit light zyedidia/micro
+# https://github.com/tomnomnom/gron
+# Make JSON greppable!
+zi ice wait"1" lucid from"github-rel" as"program"
+zi light tomnomnom/gron
 
+# https://github.com/arp242/uni
+# Query the Unicode database from the commandline, with good support for emojis
+zi ice wait"1" lucid from"github-rel" as"program" mv"uni* -> uni"
+zi light arp242/uni
 
+# https://github.com/simeji/jid
+# json incremental digger
+zi ice wait"1" lucid from"github-rel" as"program"
+zi light simeji/jid
 
-zinit ice wait"1" lucid from"github-rel" as"program" cp"tldr -> /usr/local/bin/tldr"
-zinit light isacikgoz/tldr
+# # https://github.com/swsnr/mdcat
+# zi ice wait"1" lucid from"github-rel" as"program" mv"mdcat* -> mdcat" bpick"*x86_64-unknown-linux*" pick"mdcat/mdcat"
+# zi light swsnr/mdcat
 
+# https://github.com/sharkdp/hexyl
+# hexyl is a simple hex viewer for the terminal
+zi ice wait"1" lucid from"github-rel" as"program" mv"hexyl* -> hexyl" bpick"*x86_64-unknown-linux-gnu*" pick"hexyl/hexyl"
+zi light sharkdp/hexyl
 
+# https://github.com/BurntSushi/xsv
+zi ice wait"1" lucid from"github-rel" as"program"
+zi light BurntSushi/xsv
+
+# https://github.com/BurntSushi/ripgrep
+zi ice wait"1" lucid from"github-rel" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
+zi light BurntSushi/ripgrep
+
+
+zi ice wait"2" lucid as"program" pick"$ZPFX/bin/git-now" make"prefix=$ZPFX install"
+zi light iwata/git-now
+
+# https://github.com/tj/git-extras/blob/master/Commands.md
+# source /root/.zsh/.zi/plugins/tj---git-extras/etc/git-extras-completion.zsh
+zi ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX" nocompile
+zi light tj/git-extras
+source "${ZINIT[HOME_DIR]}/plugins/tj---git-extras/etc/git-extras-completion.zsh"
+
+# zi creinstall %SNIPPETS/https--raw.githubusercontent.com--tj--git-extras--master--etc/git-extras-completion.zsh
+# mv"git* -> _git-extras" as"completion" atpull'zi creinstall -q .'
+# zi ice wait"2" lucid
+# zi snippet https://raw.githubusercontent.com/tj/git-extras/master/etc/git-extras-completion.zsh
+
+zi ice wait"2" lucid as"program" atclone'perl Makefile.PL PREFIX=$ZPFX' atpull'%atclone' \
+  make'install' pick"$ZPFX/bin/git-cal"
+zi light k4rthik/git-cal
+
+# https://github.com/laggardkernel/git-ignore
+zi ice wait"3" lucid pick'init.zsh' blockf
+zi light laggardkernel/git-ignore
+alias gi="git-ignore"
+
+# https://github.com/unixorn/git-extra-commands
+zi ice wait"3" lucid
+zi light unixorn/git-extra-commands
+
+# https://github.com/seletskiy/zsh-git-smart-commands
+zi ice wait"3" lucid
+zi light seletskiy/zsh-git-smart-commands
+
+zi ice wait"1" lucid from"github-rel" as"program" lucid has"tmux"
+zi light arl/gitmux
+
+# https://github.com/chriswalz/bit
+zi ice wait"1" lucid from"github-rel" as"program" lucid
+zi light chriswalz/bit
+
+
+# https://github.com/clvv/fasd
+zi ice wait"1" lucid as"program" make'install' pick"$ZPFX/bin/fasd"
+zi light clvv/fasd
+
+# https://github.com/zpm-zsh/figures
+zi ice wait"3" lucid
+zi light zpm-zsh/figures
+
+# # https://github.com/psprint/zsh-cmd-architect
+# zi ice wait"2" lucid
+# zi light psprint/zsh-cmd-architect
+
+zi ice wait"0" lucid from"gh-r" as"program" bpick"*x86_64-unknown-linux-gnu*" notify
+zi load starship/starship
+
+# zi ice wait"2" as"program" notify
+# zi load michaeldfallen/git-radar
+
+# zi ice wait"2"
+# zi light zpm-zsh/colorize
+
+# https://unix.stackexchange.com/questions/281479/memoizing-caching-command-line-output
+zi ice as"program" id-as"runcached"
+zi snippet https://gist.githubusercontent.com/akorn/51ee2fe7d36fa139723c851d87e56096/raw/7a87680e2f1f3e6ac4b87f88ddb76bef2aa747d1/runcached
+# https://github.com/Osse/git-scripts/blob/master/git-unique
+
+# https://github.com/ael-code/zsh-plugin-fasd/blob/master/fasd.plugin.zsh
+zi ice wait"2" lucid
+zi light ael-code/zsh-plugin-fasd
+
+# https://github.com/RobSis/zsh-completion-generator
+zi ice wait"1" lucid
+zi light RobSis/zsh-completion-generator
+zstyle :plugin:zsh-completion-generator programs   cat
+
+
+# https://github.com/Canop/broot
+zi ice wait"1" lucid from"github-rel" as"program" pick"build/x86_64-linux/broot"
+zi light Canop/broot
+if [ -f "${HOME}/.config/broot/launcher/bash/br" ]; then
+  source "${HOME}/.config/broot/launcher/bash/br"
+fi
+
+# https://github.com/gokcehan/lf
+zi ice wait"1" lucid from"github-rel" as"program" pick"lf"
+zi light gokcehan/lf
+if [ -f "${ZDOTDIR:-$HOME}/functions/lfcd" ]; then
+  source "${ZDOTDIR:-$HOME}/functions/lfcd"
+fi
+
+# https://github.com/jarun/nnn
+zi ice wait"1" lucid make as"program"
+zi light jarun/nnn
+# https://github.com/jarun/nnn/tree/master/plugins#nnn-plugins
+export NNN_PLUG='o:fzopen;f:fzcd;d:diffs;g:_git log;m:nmount;m:mediainfo;x:_chmod +x $nnn'
+export NNN_BMS='d:~/dev;D:~/dev/Config'
+export NNN_OPENER=mimeopen
+export NNN_USE_EDITOR=1
+export NNN_CONTEXT_COLORS='2136'
+export NNN_SSHFS_OPTS='sshfs -o reconnect,idmap=user'
+export NNN_COPIER=xclip
+
+# https://github.com/bootandy/dust
+zi ice wait"1" lucid from"github-rel" as"program" bpick"*x86_64-unknown-linux-gnu*" pick"dust/dust"
+zi light bootandy/dust
+
+
+# https://github.com/bcicen/ctop
+zi ice wait"1" lucid from"github-rel" as"program" mv"ctop* -> ctop" has"docker"
+zi light bcicen/ctop
+
+# https://github.com/ClementTsang/bottom
+zi ice wait"1" lucid from"github-rel" as"program" pick"btm"
+zi light ClementTsang/bottom
+
+# https://github.com/tstack/lnav
+zi ice wait"1" lucid atclone"./autogen.sh && ./configure" make as"program" pick"src/lnav" ver"v0.8.5"
+zi light tstack/lnav
+
+# apt install ninja-build
+# https://github.com/halturin/multitail
+zi ice wait"1" lucid make as"program" atclone"mkdir build; cd build; make .." make"-C build" pick"build/bin/multitail"
+zi light halturin/multitail
+	# cd /tmp
+	# echo "get multitail 6.4.1..."
+	# wget https://www.vanheusden.com/multitail/multitail-6.5.0.tgz
+	# echo "extract multitail 6.4.1..."
+	# tar -xzf multitail-6.4.1.tgz
+	# cd multitail-6.4.1/
+	# make install
+
+
+# https://github.com/eradman/entr
+zi ice wait"1" lucid atclone"./configure" make as"program" pick"entr"
+zi light eradman/entr
+
+# https://github.com/kiurchv/asdf.plugin.zsh
+# zi ice wait"3" lucid
+# zi snippet https://github.com/asdf-vm/asdf/blob/master/completions/asdf.bash
+
+# https://github.com/skx/sysadmin-util
+zi ice wait"1" lucid
+zi light skx/sysadmin-util
+
+# https://github.com/ynqa/diffy
+zi ice wait"1" lucid from"gh-r" as"program"
+zi light ynqa/diffy
+
+# # https://github.com/muesli/duf
+# zi ice wait"1" lucid from"gh-r" as"program" bpick"*_linux_x86_64.tar.gz"
+# zi light muesli/duf
+
+# https://github.com/ngirard/lolcate-rs
+zi ice wait"1" lucid from"gh-r" as"program" mv"lolcate* -> lolcate" pick"lolcate"
+zi light ngirard/lolcate-rs
+
+# https://github.com/zsh-users/zsh-syntax-highlighting
+zi ice lucid atinit"zicompinit; zicdreplay" depth"1"
+# zi ice wait"2" lucid atinit"zicompinit; zicdreplay" depth"1"
+zi light zdharma/fast-syntax-highlighting
 
-zinit ice wait"1" lucid from"github-rel" as"program" bpick"*linux64*" mv"jq* -> jq"
-zinit light stedolan/jq
-
-
-
-zinit ice wait"1" lucid from"github-rel" as"program" mv"yq* -> yq"
-zinit light mikefarah/yq
-
-
-
-zinit ice wait"1" lucid from"github-rel" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
-zinit light BurntSushi/ripgrep
-
-
-
-zinit ice wait"1" lucid from"github-rel" as"program" bpick"*x86_64-unknown-linux-gnu*" mv"dust* -> dust" pick"dust/dust"
-zinit light bootandy/dust
-
-
-
-zinit ice wait"1" lucid from"github-rel" as"program" bpick"*linux_amd64.tgz*" pick"gotop"
-zinit light cjbassi/gotop
-
-
-
-zinit ice wait"3" lucid
-zinit light zlsun/solarized-man
-
-
-
-zinit ice wait"3" lucid has"grc"
-zinit light unixorn/warhol.plugin.zsh
-
-
-
-
-
-zinit ice wait"2" lucid atinit"zicompinit; zicdreplay" depth"1"
-zinit light zdharma/fast-syntax-highlighting
-
-
-
-zinit ice wait"1" lucid blockf atload'zicompinit; zicdreplay'
-zinit light zsh-users/zsh-completions
-
-
-
-zinit ice wait"2" lucid depth"1" as"program" pick"bin/fzf-tmux" \
-  multisrc"shell/completion.zsh shell/key-bindings.zsh" notify
-zinit load junegunn/fzf
-
-
-
-zinit ice wait"1" lucid from"github-rel" as"program" bpick"*x86_64-lnx*"
-zinit light dalance/procs
-
-
-
-zinit ice wait"1" lucid
-zinit light zsh-users/zsh-history-substring-search
-
-
-
-zinit ice wait"1" lucid atclone"mkdir build ; cd build ; cmake .." make"-C build" as"program" pick"build/bin/dfc"
-zinit light Rolinh/dfc
-
-
-
-zinit ice wait"1" lucid from"github-rel" as"program"
-zinit light homeport/dyff
-
-
-
-zinit ice wait"2" lucid nocompletions has"fzf"
-zinit light b4b4r07/enhancd
-
-
-
-zinit ice wait"2" lucid has"fzf"
-zinit light urbainvaes/fzf-marks
-export FZF_MARKS_FILE="${HOME}/.marks" FZF_MARKS_COMMAND="fzf --reverse" FZF_MARKS_JUMP="^[k"
-
-
-
-zinit ice wait"3" lucid has"fzf"
-zinit light wfxr/forgit
-export FORGIT_FZF_DEFAULT_OPTS="--reverse --border"
-#  --exact --cycle --height '50%'
-
-
-
-zinit ice wait"2" lucid
-zinit light wookayin/fzf-fasd
-
-
-
-zinit ice wait"2" lucid
-zinit light ytet5uy4/fzf-widgets
-
-
-
-zinit ice wait"2" lucid nocompletions has"fzf" atload"bindkey -r '^P'; bindkey '^P' fuzzy-search-and-edit"
-zinit load seletskiy/zsh-fuzzy-search-and-edit
-
-
-
-zinit ice wait"2" lucid nocompletions has"fzf" atload"bindkey -r '^P'; bindkey '^P' fuzzy-search-and-edit"
-zinit load seletskiy/zsh-fuzzy-search-and-edit

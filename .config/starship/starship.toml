@@ -1,0 +1,140 @@
+# NOTE: https: //starship.rs/config
+
+# "$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline     = false
+scan_timeout    = 50
+command_timeout = 1000
+
+format = """
+$username\
+$hostname\
+$directory\
+$character"""
+
+right_format = """
+$cmd_duration\
+$status\
+$jobs\
+$kubernetes\
+$helm\
+$git_commit\
+$env_var\
+$package\
+$git_branch\
+$git_status"""
+
+[username]
+style_root  = "fg:#302879"
+style_user  = "fg:#aec689"
+format      = "[$user](fg:#97e3e0)"
+show_always = false
+disabled    = false
+
+[hostname]
+ssh_only = false
+format   = "[@](bold fg:#af87ff)[$hostname](bold fg:#64bed4) "
+disabled = false
+
+[character]
+  format         = "$symbol "
+  success_symbol = "[❯](bold fg:#72b8f1)[❯](bold fg:#d08ae4)"
+# success_symbol = "[❯](bold fg:#5564e8)[❯](bold fg:#97e3e0)"
+  error_symbol   = "[❯](bold fg:#72b8f1)[❯](bold fg:#e43d6c)"
+
+[directory]
+  truncation_length         = 3
+  truncation_symbol         = "…/"
+  truncate_to_repo          = true
+  use_logical_path          = false
+# fish_style_pwd_dir_length = 3
+  read_only                 = "🔒"
+  read_only_style           = "fg:#d87b64"
+  repo_root_style           = "#34ef6f"
+  style                     = "#af87ff"
+  format                    = "[$path]($style)[$read_only]($read_only_style) "
+
+# [directory.substitutions]
+# "/Volumes/network/path"  = "/net"
+# "src/com/long/java/path" = "mypath"
+
+[cmd_duration]
+min_time = 10000
+format   = "took [$duration](bold fg:#d87b64) "
+
+[status]
+format     = "[$status ↵](fg:#e43d6c) "
+pipestatus = false
+map_symbol = true
+disabled   = false
+
+[jobs]
+symbol_threshold = 1
+number_threshold = 2
+format           = "[✦$number](bold fg:#5564e8) "
+
+[package]
+version_format = "v${raw}"
+format         = "[📦 $version](fg:#5564e8) "
+
+[python]
+version_format     = "v${raw}"
+python_binary      = ["./venv/bin/python", "python", "python3", "python2"]
+format             = '[🐍 ${pyenv_prefix}(${version} )(\($virtualenv\) )](fg:#b5c1c4)'
+pyenv_version_name = true
+
+[terraform]
+version_format = "v${raw}"
+format         = "[💠 $version](fg:#5564e8) "
+
+[kubernetes]
+format   = "[☸️ $context(|$namespace)](fg:#dcc1ad) "
+disabled = false
+[kubernetes.context_aliases]
+  ".*.local.cluster.k8s"            = "dev"
+# "gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+
+[aws]
+format   = "[🅰 ($profile)](bold fg:#5564e8) "
+disabled = false
+
+[git_branch]
+always_show_remote = false
+only_attached      = false
+truncation_length  = 5
+truncation_symbol  = ".."
+ignore_branches    = ["master", "main"]
+format             = "[](fg:#87abe6)[$branch(:$remote_branch)](bold fg:#af87ff)"
+disabled           = false
+
+[git_commit]
+only_detached      = true
+tag_disabled       = false
+commit_hash_length = 4
+tag_symbol         = "🔖"
+format             = "[\\($hash$tag\\)](fg:#dcc1ad) "
+
+[git_metrics]
+format   = "[+$added](fg:#346591)/[-$deleted](fg:#d77aac)"
+disabled = true
+
+[git_status]
+conflicted = "🏳"
+ahead      = "⇡"
+behind     = "⇣"
+diverged   = "⇕"
+up_to_date = "✓"
+untracked  = "?"
+stashed    = "$"
+modified   = "!"
+staged     = "+"
+renamed    = "»"
+deleted    = "✘"
+format     = '([\[$all_status$ahead_behind\]](fg:#d77aa9) )'
+disabled   = false
+
+[env_var.SSH_AGENT_ID]
+symbol   = "🤖"
+default  = ""
+format   = "🤖:[$env_value]($style)"
+disabled = true

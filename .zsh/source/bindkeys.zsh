@@ -11,14 +11,12 @@ if [[ "${terminfo[knp]}" != "" ]]; then
   bindkey "${terminfo[knp]}" down-line-or-history
 fi
 
-#TODO: не работает
-# Начни вводить команду + [Up-Arrow] - fuzzy find history
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
   autoload -Uz up-line-or-beginning-search
   zle -N up-line-or-beginning-search
   bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 fi
-# Начни вводить команду + [Down-Arrow] - fuzzy find history backward
+
 if [[ "${terminfo[kcud1]}" != "" ]]; then
   autoload -Uz down-line-or-beginning-search
   zle -N down-line-or-beginning-search
@@ -35,7 +33,6 @@ bindkey '^H' backward-kill-word
 ### ctrl+shift+delete
 bindkey "\e[3;6~" kill-line
 
-# Перемещение по completion menu назад
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab]
 fi
@@ -49,20 +46,16 @@ else
   bindkey "\e[3~" delete-char
 fi
 
-# Редактировать команду в $EDITOR
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-# file rename magick
 bindkey "^xm" copy-prev-shell-word
 
-# opinionated bindings
 # bindkey '^r'              history-incremental-search-backward
 
 bindkey ${terminfo[kcbt]} reverse-menu-complete
 
-# make sure terminfo keys make actual sense
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   function zle-line-init () {
       echoti smkx
@@ -74,38 +67,14 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-# ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️  ☸️
-
-bindkey -s '^xy' '^Uyadm pull && source ${ZDOTDIR:-$HOME}/.zshrc^M'
-bindkey -s '^x^y' '^Uyadm nc && yadm push^M'
-
-# TODO: доделать
-_yadm-status() {
-  zle kill-whole-line
-  zle -U "yadm status -s^M"
-  zle accept-line
-}
-zle -N _yadm-status
-bindkey -s '^x^s' _yadm-status
-
-# [Ctrl-x w] пропишет 'echo $'
+# [Ctrl-x w]
 bindkey -s '^xw' '^Uecho $'
-# [Ctrl-x W] пропишет 'echo '
+# [Ctrl-x W]
 bindkey -s '^xW' '^Uecho '
-
-# Ctrl-g пропишет ' | grep '
-# bindkey -s '^g' ' | grep '
-
 bindkey -s '^[d' 'fzdc^M'
-
-# запустить $EDITOR с содержимым буфера обмена
 bindkey -s '^xj' 'micro <<<$(xclip -o)^M'
-
-# импортировать глобальную историю в локальную сессию zsh
 bindkey -s '^xh' 'fc -RI^M'
 
-# https://github.com/tomsquest/dotfiles/blob/master/zsh/bindkey.zsh
-# Вставить результат выполнения последней команды
 zmodload -i zsh/parameter
 insert-last-command-output() {
   LBUFFER+="$(eval $history[$((HISTCMD-1))])"
@@ -113,13 +82,6 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey '^x^x' insert-last-command-output
 
-# Execute the current suggestion (using zsh-autosuggestions)
-# Alt+Enter = '^[^M' on recent VTE and '^[^J' for older (Lxterminal)
-# bindkey '^[^M' autosuggest-execute
-# bindkey '^[^J' autosuggest-execute
-
-# https://superuser.com/questions/446594/separate-up-arrow-lookback-for-local-and-global-zsh-history
-# перемещение по локальной истории с помощью [ Up / Down ], а по глобальной с [ Ctrl-Up / Ctrl-Down ]
 # bindkey '^[[1;5A' up-line-or-history              # Ctrl-Up
 bindkey '^[[1;5A' history-substring-search-up       # Ctrl-Up
 # bindkey '^[[1;5B' down-line-or-history            # Ctrl-Down
@@ -142,7 +104,6 @@ down-line-or-local-history() {
 }
 zle -N down-line-or-local-history
 
-# https://unix.stackexchange.com/questions/537494/zsh-reuse-all-arguments-from-previous-command
 insert-last-words() {
   emulate -L zsh
   set -o extendedglob
@@ -168,24 +129,12 @@ insert-last-words() {
 zle -N insert-last-words
 bindkey '\e,' insert-last-words
 
-# https://github.com/leophys/zsh-plugin-fzf-finder/blob/master/fzf-finder.plugin.zsh
-
-# [ Ctrl - P ]
-# bindkey -r "^p"
-# bindkey '^p' fuzzy-search-and-edit
-
-
 # [ Alt - P ]
 bindkey -r "^[p"
 # bindkey "^[p"
-
-# [ Ctrl - O ] запустить lf с изменением CWD
-# https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+# [ Ctrl - O ]
 bindkey -r '^o'
 bindkey -s '^o' 'lfcd\n'
-
 # [ Alt - L ]
-# Отправить вывод команды в bat
-# TODO: Сделать дополнение http --pretty=all, и вставку команды до изменения на новую строку
 bindkey -r "^[l"
 bindkey -s '^[l' ' | bat --color=always --style=numbers^M'

@@ -35,32 +35,8 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM="1"
 
 export HTTPIE_CONFIG_DIR="${HOME}/.config/httpie"
 
-export ANSIBLE_CONFIG="${HOME}/.ansible/.ansible.cfg"
-# ${HOME}/anaconda3/bin:
-
 # https://til.hashrocket.com/posts/7evpdebn7g-remove-duplicates-in-zsh-path
 typeset -aU path
-
-# https://github.com/asdf-vm/asdf-nodejs
-export NODEJS_CHECK_SIGNATURES=no
-export ASDF_SKIP_RESHIM=0
-
-export TENOR_API_KEY="Y7GJ2170KBY9"
-export GITHUB_TOKEN="0c32c3199ec6e811b7284c61b6fd54d4532af3fe"
-export VULTR_API_KEY="7JC3QKT4D3AOUWUFYHLHTSIXHRHWXO6TFEXA"
-export STRAVA_ACCESS_TOKEN="53cd301055d393451f489f10b41527df165872f4"
-export STRAVA_REFRESH_TOKEN="778655219781f614789beb1bb87b46ce27f84422"
-export STRAVA_CLIENT_SECRET="13f95d23c53862b3f53bbd5f4cf6a8b1dea116b4"
-export STRAVA_CLIENT_ID="30937"
-export STRAVA_ATHLETE_ID="4741723"
-export STRAVA_APP_EXCHANGE_TOKEN="705e797f1bba454ad4a47a465bac78b403a085fb"
-export STRAVA_APP_ACCESS_TOKEN="27db7454a46f64aefedd24c3831c24e0ff9afb2f"
-export STRAVA_APP_REFRESH_TOKEN="5766c995cbd9ed23e466906f6878a958bd21bff2"
-export KOMOOT_USER_ID="916883929714"
-export GOOGLE_DRIVE_API_KEY="AIzaSyDzeWI-TB8oxhWD0P_RkR2ypXh9U1oh6PY"
-export WEATHERSTACK_API_KEY="5bed3d13228a5b5bef43cae54e5a6fee"
-export OPENWEATHERMAP_API_KEY="2f4b76ee52d30f31287abed322f7affb"
-export LMS_DEVICE_RADIO="00:04:20:27:f6:f6"
 
 export FD_OPTIONS='--no-ignore --hidden --follow --exclude .git --exclude node_modules --color=always'
 
@@ -69,107 +45,6 @@ export ENHANCD_DISABLE_DOT=0
 export ENHANCD_DISABLE_HOME=0
 export ENHANCD_DOT_ARG="."
 
-##########
-# fzf
-##########
-
-# https://www.mankier.com/1/fzf#Key/Event_Bindings-Available_Keys:_(Synonyms)
-
-# https://medium.com/free-code-camp/fzf-a-command-line-fuzzy-finder-missing-demo-a7de312403ff
-# Change behavior of fzf dialogue
-# https://github.com/junegunn/fzf/wiki/examples
-# --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-y:execute-silent(echo {+} | pbcopy)'"
-
-# TODO: починить fd
-# fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules --color=always | grep '4;38;2;154;237'
-# для заметки: важно исключить --color из fzf, чтобы не отображались коды
-
-# поиск из директории git с root
-# FZF_COMMAND='if ([ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1); then { git ls-files & git ls-files --others --exclude-standard; }; else find 2>/dev/null; fi'
-
-
-# export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden"
-export FZF_DEFAULT_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules"
-# TODO: less не работает
-# TODO: tmux load-buffer работает только на tmux хосте
-export FZF_DEFAULT_OPTS='
-  --header "-> [Ctrl+r] toggle sort <-> [Ctrl+u] wrap lines"
-  --prompt "🍧 " --no-height --tiebreak index
-  --no-mouse --reverse --multi --layout=default
-  --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
-  --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
-  --bind "ctrl-n:preview-page-down,ctrl-p:preview-page-up"
-  --bind "ctrl-space:toggle-preview,ctrl-u:toggle-preview-wrap,ctrl-r:toggle-sort"
-  --bind "alt-y:execute-silent(echo {} |tmux load-buffer -b fzf -)"
-  --preview "[[ $(file --mime {}) =~ binary ]] &&
-                 echo {} is a binary file ||
-                 (bat --style=numbers --color=always {} ||
-                  cat {}) 2> /dev/null | head -500"
-'
-
-# --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
-# --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
-#   --color fg:124,bg:16,hl:202,fg+:214,bg+:52,hl+:231
-#   --color info:52,prompt:196,spinner:208,pointer:196,marker:208
-
-# Use 'git ls-files' when inside GIT repo, or fd otherwise
-# export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
-export FZF_CTRL_T_COMMAND="fd --no-ignore --hidden --type f --follow --exclude .git --exclude node_modules  . '/root'"
-# TODO: сделать запуск fdr или что-то типа того, cd не работает
-export FZF_CTRL_T_OPTS='
-  --header "-> [Ctrl+r] toggle sort <-> [Ctrl+u] wrap lines <-> [Alt+m] edit in micro"
-  --bind "alt-m:execute(micro {})"
-  --bind "alt-l:execute(less -f {})"
-'
-#  --bind "alt-p:execute(cd $(dirname {}))
-
-export FZF_ALT_C_COMMAND="fd --type d --type l --no-ignore --hidden --follow --exclude .git --exclude node_modules . '/'"
-
-export FZF_ALT_C_OPTS='
-  --header "-> [Ctrl+r] toggle sort"
-  --prompt "📂 "
-  --select-1 --exit-0
-  --preview "tree -C {} | head -200"
-'
-
-# TODO: сделать с edit-command-line
-# сделать копирование через xclip
-export FZF_CTRL_R_OPTS='
-  --header ""
-  --prompt "👀 "
-  --preview-window down:10:hidden:wrap
-  --preview "echo {}"
-'
-# --preview-window=down:hidden
-
-# export FZF_COMPLETION_OPTS='+c -x'
-export FZF_COMPLETION_OPTS=$FZF_DEFAULT_OPTS
-export FZF_COMPLETION_TRIGGER='#'
-
-# время в превью, переделать в ISO
-# fc -lf
-# history 1938 1948 | bat --style=numbers --color=always -H 5
-
-  # (bat --style=numbers --color=always {} ||
-  #                 cat {}) 2> /dev/null | head -500"
-
-# # Integration with ripgrep
-# RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-# INITIAL_QUERY="foobar"
-# FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
-#   fzf --bind "change:reload:$RG_PREFIX {q} || true" \
-#       --ansi --phony --query "$INITIAL_QUERY"
-
-# export FZF_TMUX=1
-# export FZF_TMUX_HEIGHT=80%
-# cat /usr/share/dict/words | fzf-tmux -l 20% --multi --reverse
-
-# Press F1 to open the file with less without leaving fzf
-# Press CTRL-Y to copy the line to clipboard and aborts fzf (requires pbcopy)
-# fzf --bind 'f1:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)+abort'
-
-#https://github.com/hzeller/timg
-# echo some-image.jpg | fzf --preview='timg -E -f1 -c1 -g $(( $COLUMNS / 2 - 4 ))x$(( $FZF_PREVIEW_HEIGHT * 2 )) {}'
 
 export LFCD="${ZDOTDIR:-$HOME}/functions/lfcd"
 

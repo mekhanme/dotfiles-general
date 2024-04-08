@@ -7,44 +7,34 @@ colors
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
+function {
+    # http://zsh.sourceforge.net/Doc/Release/Options.html#Scripts-and-Functions
+    setopt LOCAL_OPTIONS extendedglob
+    # http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers
+    # http://zsh.sourceforge.net/Doc/Release/Conditional-Expressions.html#Conditional-Expressions
+    if [[ ! -e "${ZSH_COMPDUMP}" || -n "${ZSH_COMPDUMP}"(#qNY1.mh+24) ]]; then
+        zi compinit > /dev/null
+        zi cdreplay -q
+    fi
+}
+
+source ${ZDOTDIR}/.zshrc.local.ssh
 source ${ZDOTDIR}/.zshrc.local.prompt
 source ${ZDOTDIR}/.zshrc.local.appearance
-source ${ZDOTDIR}/.zshrc.local.fzf
-source ${ZDOTDIR}/.zshrc.local.ssh
-# source ${ZDOTDIR}/.zshrc.local.tools
+source ${ZDOTDIR}/.zshrc.local.options
+source ${ZDOTDIR}/.zshrc.local.other
+source ${ZDOTDIR}/.zshrc.local.tools
 
-#######
-
-[[ $commands[kubectl] ]] && alias ku="kubectl" && source <(kubectl completion zsh)
+[[ $commands[kubectl] ]] && alias k="kubectl" && source <(kubectl completion zsh)
 # kubectl completion zsh > "${fpath[1]}/_kubectl"
-
 # [[ $commands[kubectl] ]] && alias ku="kubectl" && source <(kubectl completion zsh) && autoload compinit; compinit -C
 # complete -F __start_kubectl k
 
-# https://github.com/mkokho/kubemrr
+for f (${ZDOTDIR}/source/*.zsh(N.)) source $f
+autoload -Uz ${ZDOTDIR}/functions/*(:t)
 
-# https://github.com/nnao45/zsh-kubectl-completion
-# TODO: не работает
-# zinit ice as"completion" wait"2" lucid blockf atload'zicompinit; zicdreplay'
-# zinit ice as"completion" wait"2" lucid atload'autoload compinit; compinit -C'
-# zinit light nnao45/zsh-kub
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ; source ${ZDOTDIR}/.zshrc.local.fzf
 
-# # https://github.com/wercker/stern
-# zinit ice wait"1" lucid from"github-rel" as"program" mv"stern* -> stern"
-# zinit light wercker/stern
-
-# # https://github.com/ahmetb/kubectx
-# # TODO: сделать дополнения multisrc"completion/kube*.zsh"
-# #  atpull'zinit creinstall -q .'
-# zinit ice wait"1" lucid as"program" pick"kube*"  has"kubectl"
-# zinit light ahmetb/kubectx
-
-# # https://github.com/derailed/k9s
-# zinit ice wait"1" lucid from"github-rel" as"program"
-# zinit light derailed/k9s
-
-# # https://github.com/jonmosco/kube-ps1
-# zinit light jonmosco/kube-ps1
-# PROMPT='$(kube_ps1)'$PROMPT
-
-#######
+if which direnv &>/dev/null ; then
+    eval "$(direnv hook zsh)"
+fi
